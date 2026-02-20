@@ -85,10 +85,7 @@ rows AS (
   SELECT e.state_name, e.county_name, 'Stein', e.votes_stein, e.pct_stein FROM raw.elections_data e
 )
 INSERT INTO fact.county_election_candidate (election_id, county_id, candidate_id, votes, pct)
-SELECT
-  elec.election_id,
-  c.county_id,
-  cand.candidate_id,
+SELECT elec.election_id, c.county_id, cand.candidate_id,
   NULLIF(regexp_replace(r.votes_txt, '[^0-9]', '', 'g'), '')::int AS votes,
   NULLIF(regexp_replace(r.pct_txt, '[^0-9\.]', '', 'g'), '')::numeric AS pct
 FROM rows r

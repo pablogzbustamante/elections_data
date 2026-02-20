@@ -26,9 +26,11 @@ export default function Layout({ children }) {
             <NavLink to="/counties" className={({ isActive }) => (isActive ? "active" : "")}>
                 County explorer
             </NavLink>
+            <NavLink to="/general-demographics" className={({ isActive }) => (isActive ? "active" : "")}>
+              General demographics
+            </NavLink>
           </div>
         </aside>
-
         <main className="card">{children}</main>
       </div>
     </div>

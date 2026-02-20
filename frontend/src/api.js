@@ -11,6 +11,15 @@ async function getJson(path) {
 
 export const api = {
   states: () => getJson("/states"),
+  geoStates: () => getJson("/api/geo/states"),
+  geoCounties: (stateAbbr) => getJson(`/api/geo/counties?state=${encodeURIComponent(stateAbbr)}`),
+  generalDemographics: ({ stateAbbr, countyFips } = {}) => {
+    const qs = new URLSearchParams();
+    if (stateAbbr) qs.set("state", stateAbbr);
+    if (countyFips) qs.set("county_fips", countyFips);
+    const suffix = qs.toString();
+    return getJson(`/api/general-demographics${suffix ? `?${suffix}` : ""}`);
+  },
 
   nationalSummary: () => getJson("/national/summary"),
 

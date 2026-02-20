@@ -20,7 +20,6 @@ export default function State() {
         if (!abbr) continue;
         const name = String(s.state_name || "").trim();
 
-        // preferimos el registro que trae nombre
         const prev = byAbbr.get(abbr);
         if (!prev) {
         byAbbr.set(abbr, s);

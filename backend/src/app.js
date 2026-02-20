@@ -8,6 +8,8 @@ import healthRouter from "./routes/health.js";
 import catalogRouter from "./routes/catalog.js";
 import mapRouter from "./routes/map.js";
 import rankingsRouter from "./routes/rankings.js";
+import generalDemographicsRouter from "./routes/generalDemographics.js";
+
 
 export const app = express();
 
@@ -26,6 +28,7 @@ app.use(morgan("tiny"));
 
 app.get("/", (req, res) => res.json({ ok: true, service: "elections-backend" }));
 
+app.use("/api", generalDemographicsRouter);
 app.use(healthRouter);
 app.use(catalogRouter);
 app.use(mapRouter);

@@ -29,7 +29,7 @@ function cleanStates(list) {
 
 export default function CountyExplorer() {
   const [states, setStates] = useState([]);
-  const [stateAbbr, setStateAbbr] = useState(""); // "" = all
+  const [stateAbbr, setStateAbbr] = useState("");
   const [rows, setRows] = useState([]);
   const [q, setQ] = useState("");
   const [err, setErr] = useState("");
@@ -44,7 +44,7 @@ export default function CountyExplorer() {
   useEffect(() => {
     setErr("");
     setLoading(true);
-    api.mapCounties(stateAbbr || undefined) // si tu api.js requiere param, abajo te digo cómo
+    api.mapCounties(stateAbbr || undefined)
       .then((x) => setRows(Array.isArray(x) ? x : []))
       .catch((e) => setErr(e.message))
       .finally(() => setLoading(false));

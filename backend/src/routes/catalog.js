@@ -19,12 +19,7 @@ r.get("/counties", async (req, res, next) => {
     const abbr = normalizeStateAbbr(req.query.state_abbr);
     if (!abbr) return res.status(400).json({ error: "Invalid state_abbr" });
 
-    const q = `
-      SELECT *
-      FROM dim.v_counties
-      WHERE state_abbr = $1
-      ORDER BY county_name
-    `;
+    const q = `SELECT * FROM dim.v_counties WHERE state_abbr = $1 ORDER BY county_name`;
     const out = await dbQuery(q, [abbr]);
     res.json(out.rows);
   } catch (e) {

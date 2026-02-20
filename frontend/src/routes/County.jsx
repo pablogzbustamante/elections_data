@@ -100,7 +100,7 @@ export default function County() {
           </div>
 
           <div className="card kpi">
-            <div className="label">Bachelor’s degree or higher</div>
+            <div className="label">Bachelor's degree or higher</div>
             <div className="value">
               {bachelors == null ? "—" : `${Number(bachelors).toFixed(2)}%`}
             </div>

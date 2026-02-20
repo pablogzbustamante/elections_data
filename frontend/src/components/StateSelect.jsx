@@ -4,8 +4,7 @@ export default function StateSelect({ states, value, onChange }) {
   return (
     <label style={{ display: "block", marginBottom: 12 }}>
       State:
-      <select
-        value={value || ""}
+      <select value={value || ""}
         onChange={(e) => onChange(e.target.value)}
         style={{ marginLeft: 8, padding: 6 }}
       >
