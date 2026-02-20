@@ -126,7 +126,10 @@ SELECT
   NULLIF(regexp_replace(d.population_2010_population, '[^0-9]', '', 'g'), '')::int,
   NULLIF(regexp_replace(d.population_population_per_square_mile, '[^0-9\.]', '', 'g'), '')::numeric(12,2)
 FROM raw.demographics_data d
-JOIN dim.state s ON s.state_name = NULLIF(trim(d.state), '')
+JOIN dim.state s ON (
+  s.state_abbr = upper(NULLIF(trim(d.state), ''))
+  OR s.state_name = NULLIF(trim(d.state), '')
+)
 JOIN dim.county c ON c.state_id = s.state_id AND c.county_name = NULLIF(trim(d.county), '')
 ON CONFLICT (county_id, data_year) DO NOTHING;
 
